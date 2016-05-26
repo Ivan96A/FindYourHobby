@@ -15,8 +15,4 @@ public class TaskServiceImpl implements TaskService{
     @Autowired
     private TaskRepository taskRepository;
 
-    @Override
-    public Task findById(Long id) {
-        return taskRepository.getOne(id);
-    }
 }

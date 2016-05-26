@@ -1,7 +1,14 @@
 package find.your.hobby.task.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import find.your.hobby.answerVariant.AnswerVariant;
+import find.your.hobby.category.Category;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Iwan on 13.05.2016.
@@ -11,43 +18,33 @@ import java.io.Serializable;
 @Table(name = "tasks")
 public class Task implements Serializable {
 
-    public enum HobbyType {
-        SPORT("SPORT"),
-        MUSIC("MUSIC"),
-        ART("ART"),
-        SCIENCE("SCIENCE"),
-        COMPUTER_TECHNOLOGY("COMPUTER_TECHNOLOGY");
-
-        private final String hobbyType;
-
-        HobbyType(String hobbyType) {
-            this.hobbyType = hobbyType;
-        }
-
-        @Override
-        public String toString() {
-            return hobbyType;
-        }
-    }
-
     @Id
-    @Column(name = "id")
     @GeneratedValue
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "question")
     private String question;
 
-    @Column(name = "hobby_type")
-    private HobbyType hobbyType;
+    @Column(name = "image", length = 30000000)
+    private String image;
+
+    @ManyToOne
+    @JoinColumn(name = "categories_id", nullable = false)
+    private Category category;
+
+    @OneToMany(targetEntity = AnswerVariant.class, cascade = CascadeType.ALL, mappedBy = "task")
+    private Set<AnswerVariant> answerVariants = new HashSet<>();
+
+    @Column(name = "correct_answer")
+    private String correctAnswer;
 
     public Task() {
 
     }
 
-    public Task(String question, HobbyType hobbyType) {
+    public Task(String question) {
         this.question = question;
-        this.hobbyType = hobbyType;
     }
 
     public Long getId() {
@@ -66,11 +63,35 @@ public class Task implements Serializable {
         this.question = question;
     }
 
-    public HobbyType getHobbyType() {
-        return hobbyType;
+    public String getImage() {
+        return image;
     }
 
-    public void setHobbyType(HobbyType hobbyType) {
-        this.hobbyType = hobbyType;
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Set<AnswerVariant> getAnswerVariants() {
+        return answerVariants;
+    }
+
+    public void setAnswerVariants(Set<AnswerVariant> answerVariants) {
+        this.answerVariants = answerVariants;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 }
