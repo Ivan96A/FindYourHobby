@@ -50,6 +50,9 @@ public class Category implements Serializable {
     @OneToMany(targetEntity = Task.class, cascade = CascadeType.ALL, mappedBy = "category")
     private Set<Task> tasks = new HashSet<>();
 
+    @Column(name = "image", length = 300000000)
+    private String image;
+
     public Category() {
 
     }
@@ -73,4 +76,21 @@ public class Category implements Serializable {
     public void setCategory(HobbyType category) {
         this.category = category;
     }
+
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
 }

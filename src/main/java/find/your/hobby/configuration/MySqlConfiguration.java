@@ -61,7 +61,7 @@ public class MySqlConfiguration {
 
         sessionFactoryBean = new LocalSessionFactoryBean();
         sessionFactoryBean.setDataSource(dataSource());
-        sessionFactoryBean.setPackagesToScan("digital.library");
+        sessionFactoryBean.setPackagesToScan("find.your.hobby");
         Properties hibernateProperties = new Properties();
         hibernateProperties.put("hibernate.dialect", dialect);
         hibernateProperties.put("hibernate.show_sql", dbShowSql);

@@ -30,19 +30,11 @@ public class TaskController {
     private TaskRepository taskRepository;
 
     @RequestMapping(
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Task> getTaskById() {
-        return taskRepository.findAll();
-    }
-
-
-    @RequestMapping(
             value = "/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Task getOne(@PathVariable Long id) {
-        return taskRepository.findOne(id);
+        return taskService.getOne(id);
     }
 
 }

@@ -18,6 +18,7 @@ import java.util.Set;
 @Table(name = "tasks")
 public class Task implements Serializable {
 
+
     @Id
     @GeneratedValue
     @Column(name = "id")
@@ -26,18 +27,15 @@ public class Task implements Serializable {
     @Column(name = "question")
     private String question;
 
-    @Column(name = "image", length = 30000000)
-    private String image;
-
     @ManyToOne
-    @JoinColumn(name = "categories_id", nullable = false)
+    @JoinColumn(name = "categories_id", nullable = true)
     private Category category;
 
     @OneToMany(targetEntity = AnswerVariant.class, cascade = CascadeType.ALL, mappedBy = "task")
     private Set<AnswerVariant> answerVariants = new HashSet<>();
 
-    @Column(name = "correct_answer")
-    private String correctAnswer;
+    @OneToOne
+    private AnswerVariant correctAnswer;
 
     public Task() {
 
@@ -63,14 +61,6 @@ public class Task implements Serializable {
         this.question = question;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public Category getCategory() {
         return category;
     }
@@ -87,11 +77,11 @@ public class Task implements Serializable {
         this.answerVariants = answerVariants;
     }
 
-    public String getCorrectAnswer() {
+    public AnswerVariant getCorrectAnswer() {
         return correctAnswer;
     }
 
-    public void setCorrectAnswer(String correctAnswer) {
+    public void setCorrectAnswer(AnswerVariant correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
 }

@@ -7,5 +7,5 @@ import find.your.hobby.task.domain.Task;
  */
 public interface TaskService {
 
-
+     Task getOne(Long id);
 }
