@@ -2,12 +2,11 @@ package find.your.hobby.task.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import find.your.hobby.answerVariant.AnswerVariant;
-import find.your.hobby.category.Category;
+import find.your.hobby.category.domain.Category;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -27,8 +26,9 @@ public class Task implements Serializable {
     @Column(name = "question")
     private String question;
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "categories_id", nullable = true)
+    @JoinColumn(name = "categories_id", nullable = false)
     private Category category;
 
     @OneToMany(targetEntity = AnswerVariant.class, cascade = CascadeType.ALL, mappedBy = "task")

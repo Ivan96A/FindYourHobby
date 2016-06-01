@@ -1,4 +1,4 @@
-package find.your.hobby.category;
+package find.your.hobby.category.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import find.your.hobby.task.domain.Task;
@@ -46,7 +46,6 @@ public class Category implements Serializable {
     @Column(name = "category")
     private HobbyType category;
 
-    @JsonIgnore
     @OneToMany(targetEntity = Task.class, cascade = CascadeType.ALL, mappedBy = "category")
     private Set<Task> tasks = new HashSet<>();
 

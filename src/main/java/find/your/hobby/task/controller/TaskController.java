@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -29,12 +31,20 @@ public class TaskController {
     @Autowired
     private TaskRepository taskRepository;
 
-    @RequestMapping(
+   @RequestMapping(
             value = "/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Task getOne(@PathVariable Long id) {
         return taskService.getOne(id);
+    }
+
+    @RequestMapping(
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Set<Long> getId(Set<String> category) {
+            return taskService.getTasksId(category);
+
     }
 
 }
