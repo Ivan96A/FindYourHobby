@@ -1,0 +1,15 @@
+<div class="row" ng-init="getTasks()">
+    <div class="col-lg-12" ng-repeat="task in tasks">
+        <br>
+        <ul class="list-group">
+            <li class="list-group-item">{{task.question}}</li>
+        </ul>
+        <div class="btn-group">
+            <span ng-repeat="variant in task.answerVariants">
+                <label class="btn btn-default" data-checklist-model="_variantes" data-checklist-value="variant"
+                       uib-btn-checkbox>{{variant.answer}}</label>
+            </span>
+        </div>
+    </div>
+</div>
+<pre>{{_variantes | json}}</pre>

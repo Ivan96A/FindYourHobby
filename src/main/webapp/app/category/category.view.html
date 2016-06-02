@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h3>Виберіть категорію:</h3>
+    </div>
+</div>
+<div class="row" ng-init="getCategories()">
+    <div class="col-xs-6 col-md-3" ng-repeat="category in categories">
+        <div class="thumbnail" data-checklist-model="_categories" data-checklist-value="category" uib-btn-checkbox>
+            <img ng-src="/dist/img/category/{{category.id}}.svg">
+            {{category.category}}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <center>
+            <button class="btn btn-success" ng-click="setCategories(_categories)">Далі</button>
+        </center>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <br>
+        <uib-alert type="warning" ng-show="categoriesNull">Виберіть будь-ласка категорію</uib-alert>
+    </div>
+</div>
