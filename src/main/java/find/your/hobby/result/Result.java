@@ -9,13 +9,13 @@ public class Result implements Serializable {
 
     private Long id;
 
-    private Long answer;
+    private String answer;
 
     public Result() {
 
     }
 
-    public Result(Long id, Long answer) {
+    public Result(Long id, String answer) {
         this.id = id;
         this.answer = answer;
     }
@@ -28,11 +28,11 @@ public class Result implements Serializable {
         this.id = id;
     }
 
-    public Long getAnswer() {
+    public String getAnswer() {
         return answer;
     }
 
-    public void setAnswer(Long answer) {
+    public void setAnswer(String answer) {
         this.answer = answer;
     }
 }
