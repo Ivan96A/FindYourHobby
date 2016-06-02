@@ -35,18 +35,17 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public Set<Task> getTasksId(Set<String> categories) {
-
+        int i;
         try {
             for(String category : categories) {
                 Category.HobbyType type = Category.HobbyType.valueOf(category.toUpperCase());
                 tasks = taskRepository.getTasksId(type);
-                int i = 1;
+                 i = 1;
                 for (Task task : tasks) {
                     fiveTasks.add(task);
                     if (i == 5) break;
                     i++;
                 }
-                i = 1;
                 tasks.clear();
             }
 
