@@ -120,7 +120,7 @@
     function TaskCtrl($scope, $state, TaskService) {
         var sc = $scope;
 
-        sc._variantes = [];
+        sc._variants = [];
 
         sc.getTasks = function () {
             var success = function (response) {
@@ -146,17 +146,15 @@
             TaskService.getById(id).then(success, failed);
         };
 
-        sc.putVarintes = function (index, task, variant) {
-
-            var _variant = {
-                'task' : task,
-                'variant' : variant
+        sc.getResult = function (variants) {
+            var success = function (response) {
             };
 
-            sc._variantes.push(_variant);
-            
-        }
+            var failed = function () {
 
+            };
+            if (variants.length >= 10) TaskService.pushAnswer(variants).then(success, failed);
+        }
     }
 })();
 (function () {
@@ -175,6 +173,10 @@
             this.getById = function (id) {
                 return $http.get(urlBase + '/' + id);
             };
+            
+            this.pushAnswer = function (answer) {
+                return $http.post('/answer', answer);
+            }
 
         });
 })();

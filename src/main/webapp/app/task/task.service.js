@@ -14,6 +14,10 @@
             this.getById = function (id) {
                 return $http.get(urlBase + '/' + id);
             };
+            
+            this.pushAnswer = function (answer) {
+                return $http.post('/answer', answer);
+            }
 
         });
 })();
