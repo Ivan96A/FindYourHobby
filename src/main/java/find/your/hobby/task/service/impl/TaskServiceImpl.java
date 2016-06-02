@@ -18,7 +18,7 @@ import java.util.Set;
  * Created by Iwan on 13.05.2016.
  */
 @Component("taskService")
-public class TaskServiceImpl implements TaskService{
+public class TaskServiceImpl implements TaskService {
 
     @Autowired
     private TaskRepository taskRepository;
@@ -26,6 +26,8 @@ public class TaskServiceImpl implements TaskService{
     private Set<Task> tasks = new HashSet<>();
 
     private Set<Task> fiveTasks = new HashSet<>();
+
+    private int i;
 
     @Override
     public Task getOne(Long id) {
@@ -35,12 +37,12 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public Set<Task> getTasksId(Set<String> categories) {
-        int i;
+        fiveTasks.clear();
         try {
-            for(String category : categories) {
+            for (String category : categories) {
                 Category.HobbyType type = Category.HobbyType.valueOf(category.toUpperCase());
                 tasks = taskRepository.getTasksId(type);
-                 i = 1;
+                i = 1;
                 for (Task task : tasks) {
                     fiveTasks.add(task);
                     if (i == 5) break;
@@ -49,9 +51,10 @@ public class TaskServiceImpl implements TaskService{
                 tasks.clear();
             }
 
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
 
         }
         return fiveTasks;
     }
 }
+

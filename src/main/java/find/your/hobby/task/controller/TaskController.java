@@ -43,7 +43,7 @@ public class TaskController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public void getId(@RequestBody Set<String> category) {
-            result = category;
+        result = category;
     }
 
     @RequestMapping(

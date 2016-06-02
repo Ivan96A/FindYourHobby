@@ -17,8 +17,8 @@ import java.util.Set;
 public class Category implements Serializable {
 
     public enum HobbyType {
-        SPORT("SPORT"),
-        MUSIC("MUSIC"),
+        СПОРТ("SPORT"),
+        МУЗИКА("MUSIC"),
         ART("ART"),
         SCIENCE("SCIENCE"),
         COMPUTER_TECHNOLOGY("COMPUTER_TECHNOLOGY"),
