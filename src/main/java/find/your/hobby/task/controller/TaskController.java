@@ -6,10 +6,7 @@ import find.your.hobby.task.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -40,9 +37,10 @@ public class TaskController {
     }
 
     @RequestMapping(
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public Set<Long> getId(Set<String> category) {
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Set<Task> getId(@RequestBody Set<String> category) {
             return taskService.getTasksId(category);
 
     }

@@ -23,9 +23,9 @@ public class TaskServiceImpl implements TaskService{
     @Autowired
     private TaskRepository taskRepository;
 
-    private Set<Long> tasks = new HashSet<>();
+    private Set<Task> tasks = new HashSet<>();
 
-    private Set<Long> fiveTasks = new HashSet<>();
+    private Set<Task> fiveTasks = new HashSet<>();
 
     @Override
     public Task getOne(Long id) {
@@ -34,14 +34,14 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public Set<Long> getTasksId(Set<String> categories) {
+    public Set<Task> getTasksId(Set<String> categories) {
 
         try {
             for(String category : categories) {
                 Category.HobbyType type = Category.HobbyType.valueOf(category.toUpperCase());
                 tasks = taskRepository.getTasksId(type);
                 int i = 1;
-                for (Long task : tasks) {
+                for (Task task : tasks) {
                     fiveTasks.add(task);
                     if (i == 5) break;
                     i++;

@@ -14,7 +14,7 @@ import java.util.Set;
  */
 public interface TaskRepository  extends JpaRepository<Task, Long> {
 
-    @Query("select t.id from Task t where t.category.category = :category group by rand()")
-    Set<Long> getTasksId(@Param("category")Category.HobbyType category);
+    @Query("select t from Task t where t.category.category = :category group by rand()")
+    Set<Task> getTasksId(@Param("category")Category.HobbyType category);
 
 }

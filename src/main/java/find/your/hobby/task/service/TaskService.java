@@ -12,5 +12,5 @@ public interface TaskService {
 
      Task getOne(Long id);
 
-     Set<Long> getTasksId(Set<String> categories);
+     Set<Task> getTasksId(Set<String> categories);
 }
