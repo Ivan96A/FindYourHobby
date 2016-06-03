@@ -17,6 +17,10 @@
             
             this.pushAnswer = function (answer) {
                 return $http.post('/answer', answer);
+            }; 
+
+            this.getResults = function () {
+                return $http.get('/answer');
             }
 
         });

@@ -34,14 +34,28 @@
             TaskService.getById(id).then(success, failed);
         };
 
-        sc.getResult = function (variants) {
+        sc.getResult = function() {
             var success = function (response) {
+                sc.results = response.data;
+            };
+
+            var failed = function () {
+
+            };
+
+            TaskService.getResults().then(success, failed);
+        };
+
+        sc.postResult = function (variants) {
+            var success = function (response) {
+                sc.getResult();
             };
 
             var failed = function () {
 
             };
             if (variants.length >= 10) TaskService.pushAnswer(variants).then(success, failed);
-        }
+        };
+
     }
 })();
