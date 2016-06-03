@@ -18,12 +18,16 @@ public class ResultServiceImpl implements ResultService {
     @Override
     public int getResult(Set<Result> results) {
         int count = 0;
-        for (Result result : results) {
-            if (result.getId() == taskRepository
-                    .findOne(result.getId())
-                    .getCorrectAnswer()
-                    .getId())
-                count++;
+        try {
+            for (Result result : results) {
+                if (result.getId() == taskRepository
+                        .findOne(result.getId())
+                        .getCorrectAnswer()
+                        .getId())
+                    count++;
+            }
+        }catch (NullPointerException e) {
+            
         }
         return count;
     }

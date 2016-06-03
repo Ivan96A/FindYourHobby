@@ -15,6 +15,7 @@ import java.util.Set;
 /**
  * Created by Iwan on 02.06.2016.
  */
+
 @RestController
 @RequestMapping("/answer")
 public class ResultController {
@@ -36,7 +37,8 @@ public class ResultController {
     @RequestMapping(
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public int getResult() {
+    public int getResult()
+    {
         return resultService.getResult(thisResults);
     }
 
