@@ -24,13 +24,12 @@ public class TaskController {
     @Autowired
     @Qualifier("taskService")
     private TaskService taskService;
-
     private Set<String> result = new HashSet<>();
 
     @Autowired
     private TaskRepository taskRepository;
 
-   @RequestMapping(
+    @RequestMapping(
             value = "/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -44,15 +43,14 @@ public class TaskController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public void getId(@RequestBody Set<String> category) {
         result = category;
+
     }
 
     @RequestMapping(
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Set<Task> getId() {
-      return taskService.getTasksId(result);
+        return taskService.getTasksId(result);
     }
-
-
 
 }

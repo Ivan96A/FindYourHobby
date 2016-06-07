@@ -9,6 +9,6 @@ import java.util.Set;
  */
 public interface ResultService {
 
-    int getResult(Set<Result> results);
+    FullResult getResult(Set<Result> results);
 
 }
