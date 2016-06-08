@@ -44,6 +44,15 @@
 					controller: 'TaskCtrl'
 				}
 			}
+		})
+		.state('main.result', {
+			url: 'result',
+			views: {
+				'': {
+					templateUrl: '/app/result/result.view.html',
+					controller: 'ResultCtrl'
+				}
+			}
 		});
 
 	}
@@ -115,6 +124,30 @@
 
     angular
         .module('main')
+        .controller('ResultCtrl', ResultCtrl);
+
+    function ResultCtrl($scope, $state, TaskService) {
+        var sc = $scope;
+        
+        sc.getResult = function() {
+            var success = function (response) {
+                sc.results = response.data;
+            };
+
+            var failed = function () {
+
+            };
+
+            TaskService.getResults().then(success, failed);
+        };
+
+    }
+})();
+(function () {
+    'use strict';
+
+    angular
+        .module('main')
         .controller('TaskCtrl', TaskCtrl);
 
     function TaskCtrl($scope, $state, TaskService) {
@@ -160,13 +193,13 @@
 
         sc.postResult = function (variants) {
             var success = function (response) {
-                sc.getResult();
+                $state.go('main.result');
             };
-
+ 
             var failed = function () {
 
             };
-            if (variants.length >= 10) TaskService.pushAnswer(variants).then(success, failed);
+            if (variants.length >= 5) TaskService.pushAnswer(variants).then(success, failed);
         };
 
     }

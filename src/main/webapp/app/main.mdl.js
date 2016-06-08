@@ -44,6 +44,15 @@
 					controller: 'TaskCtrl'
 				}
 			}
+		})
+		.state('main.result', {
+			url: 'result',
+			views: {
+				'': {
+					templateUrl: '/app/result/result.view.html',
+					controller: 'ResultCtrl'
+				}
+			}
 		});
 
 	}

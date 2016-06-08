@@ -48,13 +48,13 @@
 
         sc.postResult = function (variants) {
             var success = function (response) {
-                sc.getResult();
+                $state.go('main.result');
             };
-
+ 
             var failed = function () {
 
             };
-            if (variants.length >= 10) TaskService.pushAnswer(variants).then(success, failed);
+            if (variants.length >= 5) TaskService.pushAnswer(variants).then(success, failed);
         };
 
     }
